@@ -2,10 +2,15 @@ import joblib
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel
+from pathlib import Path
+
+BASE_DIR=Path(__file__).resolve().parent.parent
 
 app=FastAPI()
-model=joblib.load("E:/New folder/predictive-maintenance-system/models/random_forest_model.pkl")
-scaler=joblib.load("E:/New folder/predictive-maintenance-system/models/scaler.pkl")
+MODEL_PATH = BASE_DIR / "models" / "random_forest_model.pkl"
+model = joblib.load(MODEL_PATH)
+SCALER_PATH = BASE_DIR / "models" / "scaler.pkl"
+scaler = joblib.load(SCALER_PATH)
 
 class MachineData(BaseModel):
     Type:int

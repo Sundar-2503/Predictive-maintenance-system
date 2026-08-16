@@ -1,9 +1,13 @@
 import joblib
 import pandas as pd
 import streamlit as st
+from pathlib import Path
 
-model=joblib.load("E:/New folder/predictive-maintenance-system/models/random_forest_model.pkl")
-scaler=joblib.load("E:/New folder/predictive-maintenance-system/models/scaler.pkl")
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "random_forest_model.pkl"
+model = joblib.load(MODEL_PATH)
+SCALER_PATH = BASE_DIR / "models" / "scaler.pkl"
+scaler = joblib.load(SCALER_PATH)
 
 st.title("AI Powered Predictive Maintenance System")
 machine_type=st.selectbox(
